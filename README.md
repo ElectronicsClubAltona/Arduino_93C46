@@ -1,6 +1,6 @@
 # 93C46 Library for Arduino
 
- **N.b. This library only works for chips in the 64x16 mode. If your chip support 128x8 mode, please make sure your ORG pin is tied to GND.**
+ **N.b. This library only works for chips in the 64x16 mode. If your chip supports 128x8 mode, please make sure your ORG pin is tied to GND.**
  128x8 support is planned in the future, i.e., when I get a chip that supports it.
 
 [93C46 Datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/doc5140.pdf)
@@ -11,15 +11,15 @@ The 93C46 is a 1KB EEPROM communicating over 3-wire serial, with an additional C
 
 ## EW (Erase/Write)
 
-When the chip is powered on, EW is disabled. This blocks are attempts to erase/write anything on the chip. Once enabled, EW will stay enabled until it is explicitly disabled or the chip loses power.
+When the chip is powered on, EW is disabled. This blocks attempts to erase/write anything on the chip. Once enabled, EW will stay enabled until it is explicitly disabled or the chip loses power.
 
-## Organization
+## Organisation
 
-Some 93C46 chips support different organizations. If the ORG pin is pulled high, the chip with organize itself in 64 words of 16 bits, if ORG is pulled low, it will organize itself as 128 words of 8 bits. The mode the library uses can be changed with `set_mode`. The library starts with 16-bit mode by default.
+Some 93C46 chips support different organisations. If the ORG pin is pulled high, the chip will organise itself in 64 words of 16 bits, if ORG is pulled low, it will organise itself as 128 words of 8 bits. The mode the library uses can be changed with `set_mode`. The library starts with 16-bit mode by default.
 
-Data written into one organization may or may not be able to be read in the other organization. Your mileage may vary, have fun.
+Data written into one organisation may or may not be able to be read in the other organisation. Your mileage may vary, have fun.
 
-Using the mode not corresponding to the chip organization will result in undefined behaviour.
+Using the mode not corresponding to the chip organisation will result in undefined behaviour.
 
 ## Methods
 
@@ -49,7 +49,7 @@ Using the mode not corresponding to the chip organization will result in undefin
  * Pin 10(DI/MOSI) to Chip pin 3
  * Pin 11(DO/MISO) to Chip pin 4
  * GND to Chip pin 5
- * (For some chips:) GND/5V to pin 6 (This determines the organization, 5V is 16-bit, GND is 8-bit)
+ * (For some chips:) GND/5V to pin 6 (This determines the organisation, 5V is 16-bit, GND is 8-bit)
  * 5V to Chip pin 8
  * 
  */
@@ -87,9 +87,9 @@ void setup() {
 
   String writeBuffer;
   if(longMode) {
-    writeBuffer = "This is a string written in the 16-bit organization.\nHi, world!\0";
+    writeBuffer = "This is a string written in the 16-bit organisation.\nHi, world!\0";
   } else {
-    writeBuffer = "This is a string written in the 8-bit organization.\nAs you can see, the address space for this mode is much bigger!\nHey, world!\0";
+    writeBuffer = "This is a string written in the 8-bit organisation.\nAs you can see, the address space for this mode is much bigger!\nHey, world!\0";
   }
 
   int len = longMode ? 64 : 128;
